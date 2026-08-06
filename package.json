@@ -1,12 +1,11 @@
 {
-  "name": "vros-2",
-  "version": "0.2.0",
+  "name": "vros-2-1",
+  "version": "0.2.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
     "@supabase/supabase-js": "latest",
