@@ -6,6 +6,7 @@ import type { User } from "@supabase/supabase-js";
 import AppShell, { MainTab } from "./AppShell";
 import PortfolioImport from "./PortfolioImport";
 import AskVROS from "./AskVROS";
+import InboxPanel from "./InboxPanel";
 
 type Project = {
   id: string; name: string; area: string; status: string; progress: number;
@@ -32,6 +33,7 @@ export default function HomeClient({ user }: { user: User }) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [manuscripts, setManuscripts] = useState<Manuscript[]>([]);
   const [grants, setGrants] = useState<Grant[]>([]);
+  const [inbox, setInbox] = useState<any[]>([]);
   const [search, setSearch] = useState("");
   const [busy, setBusy] = useState(true);
 
@@ -43,16 +45,18 @@ export default function HomeClient({ user }: { user: User }) {
 
   async function load() {
     setBusy(true);
-    const [p, t, m, g] = await Promise.all([
+    const [p, t, m, g, i] = await Promise.all([
       supabase.from("projects").select("*").order("updated_at", { ascending: false }),
       supabase.from("tasks").select("*,projects(name)").order("completed").order("due_date"),
       supabase.from("manuscripts").select("*,projects(name)").order("updated_at", { ascending: false }),
       supabase.from("grants").select("*,projects(name)").order("deadline", { ascending: true }),
+      supabase.from("inbox_items").select("*").order("created_at", { ascending: false }),
     ]);
     setProjects((p.data as Project[]) || []);
     setTasks((t.data as Task[]) || []);
     setManuscripts((m.data as Manuscript[]) || []);
     setGrants((g.data as Grant[]) || []);
+    setInbox(i.data || []);
     setBusy(false);
   }
 
@@ -196,12 +200,9 @@ export default function HomeClient({ user }: { user: User }) {
 
           {!projects.length && <PortfolioImport user={user} onImported={load} />}
 
-          <AskVROS context={{
-            projects,
-            tasks,
-            manuscripts,
-            grants
-          }} />
+          <InboxPanel user={user} items={inbox} onSaved={load} />
+
+          <AskVROS context={{ projects, tasks, manuscripts, grants, inbox }} />
         </>
       )}
 

@@ -1,64 +1,23 @@
-# VROS 2.2 — Portfolio Import and Ask VROS
+# VROS 3.0 — Research Memory Engine
 
-## What this version adds
+VROS 3.0 adds project memory, saved session history, resumable project briefs, research inbox, workflow states, and project constellations.
 
-- Fixes the landing-page Add Task control by using a real form submission.
-- Adds a one-time portfolio reconstruction and import.
-- Imports projects, manuscripts, grants, tasks, and project notes.
-- Skips matching titles/names to reduce duplicates.
-- Populates project dropdown menus automatically after import.
-- Adds Ask VROS, a project-aware AI question-and-answer panel.
-- Keeps the OpenAI API key on the Vercel server, never in browser code.
-- Uses `store: false` for VROS AI requests.
+## Upgrade
+1. Run `supabase/migration_3_0.sql` in Supabase SQL Editor.
+2. Replace the files in the GitHub repository with this package.
+3. Commit to `main`; Vercel will redeploy.
+4. No new environment variables are required.
 
-## 1. Run the Supabase migration
+## OpenAI credits
+The core VROS database, project memory, session capture, inbox, links, and timelines work without OpenAI credits. The following require an active API balance: Ask VROS and Generate Resume. Add API credits in the OpenAI Platform billing page. ChatGPT subscriptions and API billing are separate.
 
-In Supabase SQL Editor, run:
+## New capabilities
+- Project Resume: purpose, hypothesis, last decision, open questions, blockers, and next action.
+- Generate Resume: AI-generated resumption brief grounded in saved VROS records.
+- Save Session: record what happened in a ChatGPT conversation or work session and paste its link.
+- Research Inbox: capture ideas and questions before organizing them.
+- Workflow states: Next, This Week, Waiting, and Someday.
+- Project Constellation: database support for relationships among projects.
 
-```text
-supabase/migration_2_2.sql
-```
-
-This adds an activity-log table for future timeline features. It does not remove existing records.
-
-## 2. Replace the GitHub repository contents
-
-Upload the contents of this package to the existing VROS repository root and replace the current files.
-
-Commit to `main`. Vercel will redeploy automatically.
-
-## 3. Import the reconstructed portfolio
-
-After deployment:
-
-1. Sign in.
-2. The empty dashboard will show **Populate VROS from our prior work**.
-3. Click **Preview portfolio**.
-4. Review the counts and project names.
-5. Click **Import into my VROS account**.
-
-The importer checks existing project names and record titles and skips likely duplicates.
-
-## 4. Configure Ask VROS
-
-Ask VROS is optional. The rest of VROS works without an OpenAI API key.
-
-In Vercel → Project → Settings → Environment Variables, add:
-
-```text
-OPENAI_API_KEY = your OpenAI API key
-OPENAI_MODEL = gpt-5-mini
-```
-
-Do not use `NEXT_PUBLIC_` in the API-key name.
-
-Redeploy after adding the variables.
-
-The application uses the official OpenAI JavaScript SDK and Responses API through a protected server route. It sends the structured VROS portfolio records relevant to the signed-in session; it does not automatically access ChatGPT conversations, OneDrive, email, or computer folders.
-
-## Security boundary
-
-- Supabase publishable key remains browser-safe and is protected by RLS.
-- OpenAI API key remains server-side in Vercel.
-- Never add a Supabase service-role key to browser code.
-- VROS currently stores structured metadata and notes, not confidential research files.
+## Important limitation
+VROS cannot automatically crawl your ChatGPT account. To return directly to a prior conversation, paste its share or browser URL into a saved Project Session or Resource record. Future sessions can be captured systematically so project continuity no longer depends on memory.
