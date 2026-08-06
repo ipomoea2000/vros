@@ -48,7 +48,7 @@ export default function HomeClient({ user }: { user: User }) {
 
   async function load() {
     setBusy(true);
-    const [p, t, m, g, i] = await Promise.all([
+    const [p, t, m, g, s, i] = await Promise.all([
       supabase.from("projects").select("*").order("updated_at", { ascending: false }),
       supabase.from("tasks").select("*,projects(name)").order("completed").order("due_date"),
       supabase.from("manuscripts").select("*,projects(name)").order("updated_at", { ascending: false }),
