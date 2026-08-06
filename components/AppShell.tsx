@@ -1,11 +1,59 @@
 "use client";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-export default function AppShell({children,email}:{children:React.ReactNode,email?:string|null}){
- const path=usePathname();
- const items=[["/","Dashboard"],["/#projects","Projects"],["/#manuscripts","Manuscripts"],["/#grants","Grants"],["/#tasks","Tasks"]];
- return <div className="shell"><aside className="sidebar"><div className="brand"><div className="logo">V</div><div><b>VROS</b><small>Research Operating System</small></div></div>
- <nav>{items.map(([href,label])=><Link key={label} href={href} className={path===href||path.startsWith("/projects")&&label==="Projects"?"active":""}>{label}</Link>)}</nav>
- <div className="side-bottom"><small>{email}</small><button className="dark" onClick={()=>supabase.auth.signOut()}>Sign out</button></div></aside><main className="main">{children}</main></div>
+
+export type MainTab = "dashboard" | "projects" | "manuscripts" | "grants" | "tasks";
+
+export default function AppShell({
+  children,
+  email,
+  activeTab = "dashboard",
+  onTabChange,
+}: {
+  children: React.ReactNode;
+  email?: string | null;
+  activeTab?: MainTab;
+  onTabChange?: (tab: MainTab) => void;
+}) {
+  const items: { id: MainTab; label: string }[] = [
+    { id: "dashboard", label: "Dashboard" },
+    { id: "projects", label: "Projects" },
+    { id: "manuscripts", label: "Manuscripts" },
+    { id: "grants", label: "Grants" },
+    { id: "tasks", label: "Tasks" },
+  ];
+
+  return (
+    <div className="shell">
+      <aside className="sidebar">
+        <div className="brand">
+          <div className="logo">V</div>
+          <div>
+            <b>VROS</b>
+            <small>Research Operating System</small>
+          </div>
+        </div>
+
+        <nav>
+          {items.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className={activeTab === item.id ? "active" : ""}
+              onClick={() => onTabChange?.(item.id)}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
+
+        <div className="side-bottom">
+          <small>{email}</small>
+          <button className="dark" onClick={() => supabase.auth.signOut()}>
+            Sign out
+          </button>
+        </div>
+      </aside>
+      <main className="main">{children}</main>
+    </div>
+  );
 }
