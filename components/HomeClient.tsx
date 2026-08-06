@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import type { User } from "@supabase/supabase-js";
 import AppShell, { MainTab } from "./AppShell";
+import KnowledgeCapture from "./KnowledgeCapture";
+import ConversationLibrary from "./ConversationLibrary";
 import PortfolioImport from "./PortfolioImport";
 import AskVROS from "./AskVROS";
 import InboxPanel from "./InboxPanel";
@@ -33,6 +35,7 @@ export default function HomeClient({ user }: { user: User }) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [manuscripts, setManuscripts] = useState<Manuscript[]>([]);
   const [grants, setGrants] = useState<Grant[]>([]);
+  const [sessions, setSessions] = useState<any[]>([]);
   const [inbox, setInbox] = useState<any[]>([]);
   const [search, setSearch] = useState("");
   const [busy, setBusy] = useState(true);
@@ -50,12 +53,14 @@ export default function HomeClient({ user }: { user: User }) {
       supabase.from("tasks").select("*,projects(name)").order("completed").order("due_date"),
       supabase.from("manuscripts").select("*,projects(name)").order("updated_at", { ascending: false }),
       supabase.from("grants").select("*,projects(name)").order("deadline", { ascending: true }),
+      supabase.from("project_sessions").select("*,project:project_id(name)").order("session_date", { ascending: false }),
       supabase.from("inbox_items").select("*").order("created_at", { ascending: false }),
     ]);
     setProjects((p.data as Project[]) || []);
     setTasks((t.data as Task[]) || []);
     setManuscripts((m.data as Manuscript[]) || []);
     setGrants((g.data as Grant[]) || []);
+    setSessions(s.data || []);
     setInbox(i.data || []);
     setBusy(false);
   }
@@ -264,6 +269,13 @@ export default function HomeClient({ user }: { user: User }) {
             </table>
             {!filteredManuscripts.length && <p className="muted">No manuscripts found.</p>}
           </TableWrap>
+        </>
+      )}
+
+      {!busy && tab === "knowledge" && (
+        <>
+          <KnowledgeCapture user={user} projects={projects} onSaved={load} />
+          <ConversationLibrary sessions={sessions} />
         </>
       )}
 

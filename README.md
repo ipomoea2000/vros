@@ -1,23 +1,52 @@
-# VROS 3.0 — Research Memory Engine
+# VROS 3.1 — Knowledge Capture and Conversation Library
 
-VROS 3.0 adds project memory, saved session history, resumable project briefs, research inbox, workflow states, and project constellations.
+VROS 3.1 turns saved ChatGPT sessions and other work sessions into structured project memory.
 
-## Upgrade
-1. Run `supabase/migration_3_0.sql` in Supabase SQL Editor.
-2. Replace the files in the GitHub repository with this package.
-3. Commit to `main`; Vercel will redeploy.
-4. No new environment variables are required.
+## What it adds
 
-## OpenAI credits
-The core VROS database, project memory, session capture, inbox, links, and timelines work without OpenAI credits. The following require an active API balance: Ask VROS and Generate Resume. Add API credits in the OpenAI Platform billing page. ChatGPT subscriptions and API billing are separate.
-
-## New capabilities
-- Project Resume: purpose, hypothesis, last decision, open questions, blockers, and next action.
-- Generate Resume: AI-generated resumption brief grounded in saved VROS records.
-- Save Session: record what happened in a ChatGPT conversation or work session and paste its link.
-- Research Inbox: capture ideas and questions before organizing them.
-- Workflow states: Next, This Week, Waiting, and Someday.
-- Project Constellation: database support for relationships among projects.
+- A global **Knowledge** section.
+- A guided **Knowledge Capture** form.
+- Save a source URL and link one session to multiple projects.
+- Paste conversation text or rough notes.
+- Optional AI extraction of:
+  - summary
+  - decisions
+  - evidence/files
+  - open questions
+  - next actions
+  - keywords
+- All extracted fields remain editable before saving.
+- Optional automatic update of the primary project's memory.
+- Optional task creation from semicolon-separated next actions.
+- A searchable **Conversation Library** with direct links back to original chats.
+- Project workspaces include Knowledge Capture and their saved conversation history.
 
 ## Important limitation
-VROS cannot automatically crawl your ChatGPT account. To return directly to a prior conversation, paste its share or browser URL into a saved Project Session or Resource record. Future sessions can be captured systematically so project continuity no longer depends on memory.
+
+VROS cannot read a private ChatGPT conversation merely from its URL. Paste the important conversation text, a ChatGPT-generated recap, or your own notes into Knowledge Capture. The URL is stored for direct return to the original chat.
+
+## Upgrade
+
+1. In Supabase SQL Editor, run:
+   `supabase/migration_3_1.sql`
+
+2. Replace the existing GitHub repository contents with this package.
+
+3. Commit to `main`; Vercel will redeploy automatically.
+
+4. No new environment variables are needed. AI extraction uses the existing:
+   - `OPENAI_API_KEY`
+   - `OPENAI_MODEL`
+
+## Recommended first capture
+
+Open the original AI4SP Digital Twin conversation and copy its URL. In VROS:
+
+1. Open **Knowledge**.
+2. Enter a session title.
+3. Choose **AI4SP Sweetpotato Digital Twin** as the primary project.
+4. Paste the URL.
+5. Paste a short recap or the relevant portion of the conversation.
+6. Click **Extract memory with AI**.
+7. Review the fields and save.
+8. Close the original browser tab.

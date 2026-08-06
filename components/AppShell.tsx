@@ -1,7 +1,7 @@
 "use client";
 import { supabase } from "@/lib/supabase";
 
-export type MainTab = "dashboard" | "projects" | "manuscripts" | "grants" | "tasks";
+export type MainTab = "dashboard" | "projects" | "manuscripts" | "grants" | "tasks" | "knowledge";
 
 export default function AppShell({
   children,
@@ -20,6 +20,7 @@ export default function AppShell({
     { id: "manuscripts", label: "Manuscripts" },
     { id: "grants", label: "Grants" },
     { id: "tasks", label: "Tasks" },
+    { id: "knowledge", label: "Knowledge" },
   ];
 
   return (
