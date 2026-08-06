@@ -263,7 +263,7 @@ export default function HomeClient({ user }: { user: User }) {
         <>
           <KnowledgeCapture user={user} projects={projects} onSaved={load}/>
           <ConversationLibrary sessions={sessions}/>
-          <InboxPanel user={user} items={inbox} projects={projects} onChanged={load}/>
+          <InboxPanel user={user} items={inbox} onSaved={load}/>
         </>
       )}
 
