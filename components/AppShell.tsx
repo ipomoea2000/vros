@@ -9,7 +9,8 @@ export type MainTab =
   | "manuscripts"
   | "grants"
   | "tasks"
-  | "knowledge";
+  | "knowledge"
+  | "agents";
 
 export default function AppShell({
   children,
@@ -30,6 +31,7 @@ export default function AppShell({
     { id: "knowledge", label: "Capture & Memory" },
     { id: "manuscripts", label: "Manuscripts" },
     { id: "grants", label: "Grants" },
+    { id: "agents", label: "AROS Agents" },
   ];
 
   function navigate(tab: MainTab) {

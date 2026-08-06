@@ -64,3 +64,15 @@ body{background:#f4f1ed}
 .task-list{padding:22px}
 @media(max-width:1050px){.continue-layout,.project-resume,.project-core{grid-template-columns:1fr}.resume-grid,.project-directory{grid-template-columns:repeat(2,minmax(0,1fr))}.resume-memory{border-left:0;border-top:1px solid var(--l);padding-left:0;padding-top:15px}}
 @media(max-width:760px){.resume-grid,.project-directory{grid-template-columns:1fr}.section-title,.section-intro{align-items:flex-start;flex-direction:column;gap:8px}.project-actions{width:100%;flex-wrap:wrap}.quick-capture{flex-direction:column}}
+
+/* AROS advisory-agent layer */
+.agent-center{display:grid;gap:15px}.agent-intro{display:flex;justify-content:space-between;align-items:center;gap:20px;background:linear-gradient(135deg,#fff,#e9f1ec)}
+.agent-intro h2{margin:5px 0}.agent-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px}
+.agent-card{display:flex;flex-direction:column;min-height:190px}.agent-card h3{margin:0 0 8px}.agent-card p{color:var(--m);line-height:1.4}.agent-card button{margin-top:auto}
+.agent-layout{display:grid;grid-template-columns:1.6fr .65fr;gap:15px}.recommendation-list{display:grid;gap:10px}.recommendation{border:1px solid var(--l);border-left:5px solid var(--p);border-radius:11px;padding:14px}
+.recommendation.priority-high{border-left-color:#b64e42}.recommendation.priority-low{border-left-color:#7895a8}.recommendation h3{margin:8px 0}.recommendation p{color:var(--m);line-height:1.45}
+.recommendation-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--m)}.recommendation-actions{display:flex;gap:8px;margin-top:12px}
+.agent-settings{display:grid;gap:12px;align-content:start}.agent-settings label{display:grid;gap:6px;font-weight:700}.check-line{display:flex!important;grid-template-columns:auto 1fr!important;align-items:center}.tiny{font-size:12px;line-height:1.4}
+@media(max-width:1200px){.agent-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:900px){.agent-layout,.agent-intro{grid-template-columns:1fr;display:grid}.agent-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.agent-grid{grid-template-columns:1fr}}

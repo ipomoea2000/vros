@@ -10,6 +10,7 @@ import ConversationLibrary from "./ConversationLibrary";
 import PortfolioImport from "./PortfolioImport";
 import AskVROS from "./AskVROS";
 import InboxPanel from "./InboxPanel";
+import AgentCenter from "./AgentCenter";
 
 type Project = {
   id: string; name: string; area: string; status: string; progress: number;
@@ -31,7 +32,7 @@ type Grant = {
   projects?: { name: string } | null;
 };
 
-const validTabs: MainTab[] = ["dashboard","projects","manuscripts","grants","tasks","knowledge"];
+const validTabs: MainTab[] = ["dashboard","projects","manuscripts","grants","tasks","knowledge","agents"];
 
 export default function HomeClient({ user }: { user: User }) {
   const searchParams = useSearchParams();
@@ -187,6 +188,7 @@ export default function HomeClient({ user }: { user: User }) {
                 <button onClick={()=>setTab("tasks")}><b>{openTasks.length}</b><span>open tasks</span></button>
                 <button onClick={()=>setTab("manuscripts")}><b>{manuscripts.length}</b><span>manuscripts</span></button>
                 <button onClick={()=>setTab("knowledge")}><b>{sessions.length}</b><span>saved sessions</span></button>
+                <button onClick={()=>setTab("agents")}><b>AROS</b><span>review portfolio</span></button>
               </div>
             </div>
           </section>
@@ -267,6 +269,10 @@ export default function HomeClient({ user }: { user: User }) {
         </>
       )}
 
+      {!busy && tab==="agents" && (
+        <AgentCenter user={user} projects={projects} />
+      )}
+
       {!busy && tab==="manuscripts" && (
         <>
           <form className="form-bar manuscripts-form" onSubmit={addManuscript}>
@@ -316,7 +322,7 @@ function greeting() {
   return `${h<12?"Good morning":h<18?"Good afternoon":"Good evening"}, Arthur`;
 }
 function labelFor(tab:MainTab) {
-  return ({projects:"Projects",tasks:"Tasks",knowledge:"Capture & Memory",manuscripts:"Manuscripts",grants:"Grants",dashboard:"Home"})[tab];
+  return ({projects:"Projects",tasks:"Tasks",knowledge:"Capture & Memory",manuscripts:"Manuscripts",grants:"Grants",agents:"AROS Agents",dashboard:"Home"})[tab];
 }
 function relativeDate(value?:string|null) {
   if (!value) return "No activity recorded";

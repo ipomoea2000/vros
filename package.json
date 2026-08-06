@@ -1,6 +1,6 @@
 {
-  "name": "vros-4",
-  "version": "0.4.0",
+  "name": "aros",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

@@ -1,39 +1,68 @@
-# VROS 4 — Calm Resume Interface
+# AROS 1.0 — Agentic Research Operating System
 
-VROS 4 changes the interface without replacing the database or deleting prior records.
+AROS evolves VROS 4 by adding advisory agents, an approval queue, and transparent agent history. It does not replace or erase the VROS database.
 
-## Your existing data is preserved
+## Existing information remains intact
 
-The two ChatGPT links and all projects, tasks, manuscripts, grants, notes, project sessions, project memory, and imported portfolio records remain in Supabase. Replacing the application files does not erase them.
+The upgrade uses an additive SQL migration. It does not delete or overwrite:
 
-No new Supabase migration is required for VROS 4.
+- projects
+- ChatGPT conversation links
+- project sessions
+- tasks
+- manuscripts
+- grants
+- notes
+- resources
+- project memory
+- project relationships
 
-## Main changes
+## Agents included
 
-- Calm homepage centered on **Continue My Day**
-- Recently active projects with one-click **Resume Project**
-- Simplified project page showing:
-  - immediate next action
-  - latest decision
-  - latest conversation link
-  - open tasks
-  - recent memory
-  - quick note
-  - linked work
-- Full project record remains available behind a disclosure button
-- Knowledge Capture remains available globally and inside projects
-- Existing Conversation Library, Ask VROS, Inbox, Manuscripts, Grants, and Tasks remain available
-- Sidebar navigation now works from inside a project by returning to the requested home section
-- URL view state is preserved with `?view=projects`, `?view=knowledge`, etc.
+- Research Coordinator
+- Stale Project Watch
+- Deadline Watch
+- Manuscript Readiness
+- Project Memory Auditor
+- Complete Portfolio Review
+
+AROS 1.0 is deliberately human-supervised. Agents generate recommendations and wait for approval before creating tasks or updating a project's next action.
 
 ## Upgrade
 
-1. Replace the existing GitHub repository contents with this package.
-2. Commit to `main`.
-3. Vercel will redeploy automatically.
-4. No SQL migration and no environment-variable changes are needed.
-5. Hard-refresh the live site after deployment.
+### 1. Run the additive migration
 
-## Adding more ChatGPT links afterward
+In Supabase SQL Editor, run:
 
-Yes. Open **Capture & Memory** or a project and click **Capture session**. The two links you already saved remain intact.
+`supabase/migration_aros_1_0.sql`
+
+### 2. Replace the GitHub repository files
+
+Upload this package's contents to the existing repository root and commit to `main`.
+
+### 3. No new variables are required for manual agents
+
+Manual advisory agents use the existing Supabase authentication and work immediately.
+
+## Optional scheduled daily agents
+
+The included `vercel.json` schedules `/api/agents/cron` daily.
+
+To enable scheduled agents, add these server-side Vercel variables:
+
+- `CRON_SECRET` — generate a long random secret
+- `SUPABASE_SERVICE_ROLE_KEY` — obtain from Supabase project API keys; keep it server-side only
+
+Then redeploy and enable **scheduled daily advisory brief** in AROS Agent Controls.
+
+The service-role key must never be prefixed with `NEXT_PUBLIC_`, committed to GitHub, or pasted into client code.
+
+Scheduled agents remain advisory: they add recommendations to the review queue and do not automatically send messages, edit manuscripts, delete data, or submit anything.
+
+## First use
+
+1. Open **AROS Agents** in the sidebar.
+2. Click **Run complete portfolio review**.
+3. Review each recommendation.
+4. Approve useful actions or dismiss them.
+5. Open Agent Activity to see exactly what ran and when.
