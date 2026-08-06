@@ -1,0 +1,404 @@
+{
+  "version": "2026-08-06",
+  "projects": [
+    {
+      "ref": "periderm-core",
+      "name": "Native Periderm and Lignification",
+      "area": "Periderm",
+      "status": "Active",
+      "priority": "High",
+      "progress": 86,
+      "summary": "Program integrating native periderm development, lignification, anatomy, molecular regulation, skin adhesion, barrier function, and durability in sweetpotato.",
+      "next_action": "Complete the water-deprivation manuscript and consolidate follow-up experiments into a Periderm 2.0 roadmap."
+    },
+    {
+      "ref": "water-deprivation",
+      "name": "Preharvest Water Deprivation and Skin Set",
+      "area": "Periderm",
+      "status": "Active",
+      "priority": "High",
+      "progress": 92,
+      "summary": "Two-year greenhouse study of 5- and 10-day water deprivation in Bayou Belle, Beauregard, and Orleans, integrating anatomy, lignification, weight loss, and qRT-PCR.",
+      "next_action": "Complete the final manuscript review, citations, statistical description, and submission package."
+    },
+    {
+      "ref": "australia-pw21002",
+      "name": "Australian Hort Innovation PW21002",
+      "area": "Australia",
+      "status": "Active",
+      "priority": "High",
+      "progress": 82,
+      "summary": "Causes and management of skin loss in Australian sweetpotato, including research translation, final reporting, factsheets, best-practice guidance, and advisory tools.",
+      "next_action": "Complete Factsheet 5 and consolidate the field-to-market Best Practice Guide manuscript."
+    },
+    {
+      "ref": "bmp-guide",
+      "name": "Sweetpotato Skin Quality Field-to-Market Guide",
+      "area": "Extension",
+      "status": "Active",
+      "priority": "High",
+      "progress": 58,
+      "summary": "Ten-chapter Australian grower handbook organized around native periderm development, maturation, harvest readiness, handling, diagnostics, and future tools.",
+      "next_action": "Draft the one-page project introduction using the Australia model, mandatory response table, and current BMP draft."
+    },
+    {
+      "ref": "periderm2",
+      "name": "Periderm 2.0",
+      "area": "Periderm",
+      "status": "Planning",
+      "priority": "Medium",
+      "progress": 25,
+      "summary": "Follow-up program focused on phenotyping, molecular markers, environmental validation, management practices, and translation to Australian production.",
+      "next_action": "Define work packages, validation sites, measurements, and links to the completed PW21002 project."
+    },
+    {
+      "ref": "bard-periderm",
+      "name": "BARD Pioneering Periderm Proposal",
+      "area": "Grants",
+      "status": "Planning",
+      "priority": "High",
+      "progress": 55,
+      "summary": "US-Israel foundational research on protective barrier development, lignification, stress responses, and translational applications in root and tuber crops.",
+      "next_action": "Finalize methodology, US-Israel responsibilities, abstract framing, and preliminary-data narrative."
+    },
+    {
+      "ref": "sweetwater",
+      "name": "Sweetwater SCRI Proposal",
+      "area": "Grants",
+      "status": "Planning",
+      "priority": "Medium",
+      "progress": 34,
+      "summary": "Mississippi State-led SCRI proposal emphasizing drought effects, with complementary sweetpotato periderm and physiology contributions.",
+      "next_action": "Clarify the drought-specific scope and document complementarity with BARD and Periderm 2.0."
+    },
+    {
+      "ref": "digital-twin",
+      "name": "AI4SP Sweetpotato Digital Twin",
+      "area": "Software",
+      "status": "Active",
+      "priority": "High",
+      "progress": 42,
+      "summary": "Browser-based prototype combining weather, GDD, crop stage, predicted US No. 1 yield, dynamic crop visualization, harvest readiness, and skinning risk.",
+      "next_action": "Locate the current GitHub/Vercel prototype and define the next integrated yield-plus-skin-quality release."
+    },
+    {
+      "ref": "vros",
+      "name": "Villordon Research Operating System",
+      "area": "Software",
+      "status": "Active",
+      "priority": "High",
+      "progress": 55,
+      "summary": "Research portfolio, manuscript, grant, task, resource, and AI-recall system designed to help resume and coordinate parallel projects.",
+      "next_action": "Import the reconstructed portfolio, validate project relationships, and activate Ask VROS."
+    },
+    {
+      "ref": "npk",
+      "name": "NPK Responsiveness Classification",
+      "area": "Nutrition",
+      "status": "Active",
+      "priority": "High",
+      "progress": 76,
+      "summary": "Multi-year field classification of cultivar responsiveness and efficiency for N, P, and K, integrated with marketable yield grades, molecular evidence, and economics.",
+      "next_action": "Finalize publication tables with mean yield, delta, evidence columns, and the expanded Results and Discussion."
+    },
+    {
+      "ref": "susy",
+      "name": "SuSy and Nutrient Signaling",
+      "area": "Nutrition",
+      "status": "Active",
+      "priority": "Medium",
+      "progress": 62,
+      "summary": "Gene-expression program linking declining N and P, sucrose synthase activity, sink strength, and cultivar-specific storage-root developmental responses.",
+      "next_action": "Separate the N and P manuscript narratives and identify the most complete cultivar datasets."
+    },
+    {
+      "ref": "ethylene",
+      "name": "Ethylene and ACO Gene Expression",
+      "area": "Molecular",
+      "status": "Active",
+      "priority": "Medium",
+      "progress": 64,
+      "summary": "qRT-PCR work on IbACO, IbACS, and IbERF under control and drying treatments in Bayou Belle, Beauregard, and Orleans.",
+      "next_action": "Retain ACO as the consistent response and determine whether the dataset supports a standalone analysis or inclusion in the periderm program."
+    },
+    {
+      "ref": "nutrient-periderm",
+      "name": "Boron, Calcium, and Potassium Effects on Periderm",
+      "area": "Periderm",
+      "status": "Active",
+      "priority": "Medium",
+      "progress": 63,
+      "summary": "Greenhouse nutrient-omission studies linking B, Ca, and K status with lignification, phenylpropanoid genes, periderm disorders, and cultivar responses.",
+      "next_action": "Synthesize the boron-deficiency results and define the next validation experiment."
+    },
+    {
+      "ref": "pb",
+      "name": "Lead Uptake and Food Safety",
+      "area": "Food Safety",
+      "status": "Active",
+      "priority": "High",
+      "progress": 70,
+      "summary": "Greenhouse and field studies of cultivar variation in Pb uptake and partitioning, analytical quality control, and practical food-safety implications.",
+      "next_action": "Complete the 2026 field validation and connect the results to the published Data in Brief dataset."
+    },
+    {
+      "ref": "drought-rsa",
+      "name": "Episodic Drought and Root System Architecture",
+      "area": "Drought",
+      "status": "Active",
+      "priority": "High",
+      "progress": 79,
+      "summary": "Manuscript on storage-root initiation, RSA attributes, genotypic responses to episodic drought, and greenhouse sand water-content validation.",
+      "next_action": "Finalize the concise reviewer rebuttal, title framing, and citations supporting measured low VWC in sand."
+    },
+    {
+      "ref": "rockhampton",
+      "name": "Rockhampton Precure Trial",
+      "area": "Australia",
+      "status": "Active",
+      "priority": "Medium",
+      "progress": 61,
+      "summary": "Analysis of water deprivation, top removal, preharvest intervals, manual versus mechanical harvest, curing, weight loss, and sprouting.",
+      "next_action": "Complete the combined study analysis and identify the clearest management conclusions for the Australian guide."
+    },
+    {
+      "ref": "kyoto",
+      "name": "ISHS Kyoto SuSy Presentation",
+      "area": "Presentation",
+      "status": "Active",
+      "priority": "Medium",
+      "progress": 78,
+      "summary": "Poster and 13-minute oral presentation on N/P depletion, SuSy expression, sink strength, and cultivar responses.",
+      "next_action": "Finalize the oral slide deck, image placeholders, and speaking notes."
+    },
+    {
+      "ref": "pontotoc",
+      "name": "Pontotoc Field Day Skin Set Talk",
+      "area": "Extension",
+      "status": "Active",
+      "priority": "Medium",
+      "progress": 80,
+      "summary": "Thirteen-minute TED-style field-day presentation for growers and researchers focused on understanding skin set and translating anatomy into practice.",
+      "next_action": "Finalize speaker notes and ensure the novel anatomical finding anchors the talk."
+    },
+    {
+      "ref": "food-progress",
+      "name": "Food for Progress Purple Sweetpotato Collaboration",
+      "area": "Grants",
+      "status": "Planning",
+      "priority": "Low",
+      "progress": 18,
+      "summary": "Potential collaboration with Visayas State University involving pathogen-tested, genotyped purple sweetpotato material and commodity monetization.",
+      "next_action": "Reassess funding fit, timeline, partners, and whether the concept remains active."
+    },
+    {
+      "ref": "ai4neag",
+      "name": "AI4NEAg Practical Guidance",
+      "area": "AI Governance",
+      "status": "Active",
+      "priority": "Medium",
+      "progress": 67,
+      "summary": "Working-group effort to develop practical AI guidance, risk tiers, use cases, and CIO review within the LSU PS-60 framework.",
+      "next_action": "Track CIO feedback and convert the risk-tier framework into concise institutional guidance."
+    }
+  ],
+  "manuscripts": [
+    {
+      "title": "More Than Skin Deep: Native Periderm Development and Lignin-mediated Durability in Sweetpotato Storage Roots",
+      "journal": "HortScience",
+      "status": "Published",
+      "project_ref": "periderm-core",
+      "next_action": "Track citations and reuse the conceptual framework in proposals and extension products.",
+      "doi": "10.21273/HORTSCI19505-26"
+    },
+    {
+      "title": "Native Periderm Responses to Preharvest Water Deprivation in Sweetpotato",
+      "journal": "HortScience",
+      "status": "Final revision",
+      "project_ref": "water-deprivation",
+      "next_action": "Complete final citation, figure, statistical-method, and submission checks."
+    },
+    {
+      "title": "Sweetpotato Cultivar Responsiveness and Efficiency to N, P, and K",
+      "journal": "HortScience / HortTechnology",
+      "status": "Drafting",
+      "project_ref": "npk",
+      "next_action": "Finalize evidence tables, economic analysis, and Results and Discussion."
+    },
+    {
+      "title": "Cultivar Variation in Lead Uptake and Partitioning in Sweetpotato",
+      "journal": "Data in Brief / follow-up journal",
+      "status": "Field validation",
+      "project_ref": "pb",
+      "next_action": "Complete field harvest and prepare the integrated follow-up manuscript."
+    },
+    {
+      "title": "Root System Architecture Attributes Associated with Storage Root Initiation and Episodic Drought Responses",
+      "journal": "TBD",
+      "status": "Revision",
+      "project_ref": "drought-rsa",
+      "next_action": "Complete reviewer response and title decision."
+    },
+    {
+      "title": "Declining Phosphorus Availability, SuSy Expression, and Sink Strength in Beauregard",
+      "journal": "TBD",
+      "status": "Planning",
+      "project_ref": "susy",
+      "next_action": "Confirm the final dataset and develop the manuscript outline."
+    },
+    {
+      "title": "Cultivar Variation in SuSy Response to Declining Nitrogen",
+      "journal": "TBD",
+      "status": "Planning",
+      "project_ref": "susy",
+      "next_action": "Resolve cultivar coverage and define the central biological contrast."
+    },
+    {
+      "title": "Boron Availability, Lignification, and Native Periderm Development",
+      "journal": "TBD",
+      "status": "Concept",
+      "project_ref": "nutrient-periderm",
+      "next_action": "Determine whether current experiments support a manuscript or require targeted validation."
+    },
+    {
+      "title": "Sweetpotato Skin Quality: A Field-to-Market Guide",
+      "journal": "Hort Innovation publication",
+      "status": "Drafting",
+      "project_ref": "bmp-guide",
+      "next_action": "Complete the introduction and consolidate Chapters 1\u201310."
+    }
+  ],
+  "grants": [
+    {
+      "title": "Foundational and Translational Biology of Root Protective Barriers",
+      "agency": "BARD Pioneering Grant",
+      "status": "Drafting",
+      "project_ref": "bard-periderm",
+      "next_action": "Finalize methods, roles, abstract, and application framing."
+    },
+    {
+      "title": "Sweetwater: Drought Resilience and Sweetpotato Production",
+      "agency": "USDA SCRI",
+      "status": "Planning",
+      "project_ref": "sweetwater",
+      "next_action": "Define the LSU periderm contribution and avoid duplication with other proposals."
+    },
+    {
+      "title": "Periderm 2.0",
+      "agency": "Australian follow-up RFP",
+      "status": "Concept",
+      "project_ref": "periderm2",
+      "next_action": "Develop phenotyping, molecular, management, and validation work packages."
+    },
+    {
+      "title": "Purple Sweetpotato Value Chain and Clean Planting Material",
+      "agency": "USDA Food for Progress",
+      "status": "Concept",
+      "project_ref": "food-progress",
+      "next_action": "Reassess eligibility, monetization, and partner commitments."
+    }
+  ],
+  "tasks": [
+    {
+      "title": "Submit the water-deprivation manuscript",
+      "priority": "High",
+      "project_ref": "water-deprivation"
+    },
+    {
+      "title": "Complete Factsheet 5 scientific review",
+      "priority": "High",
+      "project_ref": "australia-pw21002"
+    },
+    {
+      "title": "Draft the BMP guide one-page introduction",
+      "priority": "High",
+      "project_ref": "bmp-guide"
+    },
+    {
+      "title": "Consolidate BMP Chapters 1\u201310 into a master manuscript",
+      "priority": "High",
+      "project_ref": "bmp-guide"
+    },
+    {
+      "title": "Locate the AI4SP Digital Twin GitHub repository and Vercel deployment",
+      "priority": "High",
+      "project_ref": "digital-twin"
+    },
+    {
+      "title": "Finalize NPK mean-yield, delta, and evidence tables",
+      "priority": "High",
+      "project_ref": "npk"
+    },
+    {
+      "title": "Expand NPK Results and Discussion",
+      "priority": "High",
+      "project_ref": "npk"
+    },
+    {
+      "title": "Prepare BARD US-Israel responsibility matrix",
+      "priority": "High",
+      "project_ref": "bard-periderm"
+    },
+    {
+      "title": "Clarify Sweetwater complementarity and drought scope",
+      "priority": "Medium",
+      "project_ref": "sweetwater"
+    },
+    {
+      "title": "Finalize episodic drought reviewer rebuttal",
+      "priority": "High",
+      "project_ref": "drought-rsa"
+    },
+    {
+      "title": "Plan the 2026 Pb field harvest and analysis",
+      "priority": "Medium",
+      "project_ref": "pb"
+    },
+    {
+      "title": "Finalize Kyoto oral-presentation notes",
+      "priority": "Medium",
+      "project_ref": "kyoto"
+    },
+    {
+      "title": "Finalize Pontotoc TED-style speaker notes",
+      "priority": "Medium",
+      "project_ref": "pontotoc"
+    },
+    {
+      "title": "Review CIO feedback on AI4NEAg risk guidance",
+      "priority": "Medium",
+      "project_ref": "ai4neag"
+    },
+    {
+      "title": "Review imported VROS projects and merge any duplicates",
+      "priority": "High",
+      "project_ref": "vros"
+    }
+  ],
+  "notes": [
+    {
+      "project_ref": "periderm-core",
+      "body": "Periderm refers to native periderm unless specifically identified as wound periderm. Skin set is being framed as native periderm maturation."
+    },
+    {
+      "project_ref": "water-deprivation",
+      "body": "Central interpretation: irrigation withdrawal accelerated native periderm maturation rather than simply inducing a generalized water-deficit response."
+    },
+    {
+      "project_ref": "australia-pw21002",
+      "body": "The Australian publication should be grounded in native periderm biology and focused on the field-to-market production chain rather than long-term storage."
+    },
+    {
+      "project_ref": "digital-twin",
+      "body": "The prototype began with GDD, crop stage, weather, and predicted US No. 1 yield; later concepts added harvest readiness and skinning risk."
+    },
+    {
+      "project_ref": "npk",
+      "body": "Classification integrates responsiveness, nutrient-use efficiency, marketable yield grades, gene-expression evidence, and partial-budget economics."
+    },
+    {
+      "project_ref": "vros",
+      "body": "Primary purpose: make it possible to resume a project quickly without reconstructing the history from multiple chats and files."
+    }
+  ]
+}

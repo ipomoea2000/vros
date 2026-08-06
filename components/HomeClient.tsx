@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import type { User } from "@supabase/supabase-js";
 import AppShell, { MainTab } from "./AppShell";
+import PortfolioImport from "./PortfolioImport";
+import AskVROS from "./AskVROS";
 
 type Project = {
   id: string; name: string; area: string; status: string; progress: number;
@@ -169,12 +171,11 @@ export default function HomeClient({ user }: { user: User }) {
             <Metric n={grants.length} l="grants" />
           </section>
 
-          <section className="quick panel">
+          <form className="quick panel" onSubmit={(e) => { e.preventDefault(); addQuickTask(); }}>
             <input value={quickTask} onChange={e => setQuickTask(e.target.value)}
-              onKeyDown={e => { if (e.key === "Enter") addQuickTask(); }}
               placeholder="Capture a task before you forget it…" />
-            <button onClick={addQuickTask}>Add task</button>
-          </section>
+            <button type="submit">Add task</button>
+          </form>
 
           <section className="two">
             <div className="panel">
@@ -192,6 +193,15 @@ export default function HomeClient({ user }: { user: User }) {
               </div>
             </div>
           </section>
+
+          {!projects.length && <PortfolioImport user={user} onImported={load} />}
+
+          <AskVROS context={{
+            projects,
+            tasks,
+            manuscripts,
+            grants
+          }} />
         </>
       )}
 
