@@ -10,7 +10,8 @@ export type MainTab =
   | "grants"
   | "tasks"
   | "knowledge"
-  | "agents";
+  | "agents"
+  | "communications";
 
 export default function AppShell({
   children,
@@ -32,6 +33,7 @@ export default function AppShell({
     { id: "manuscripts", label: "Manuscripts" },
     { id: "grants", label: "Grants" },
     { id: "agents", label: "AROS Agents" },
+    { id: "communications", label: "Communications" },
   ];
 
   function navigate(tab: MainTab) {
@@ -49,8 +51,8 @@ export default function AppShell({
         <button className="brand-button" onClick={() => navigate("dashboard")}>
           <div className="logo">V</div>
           <div>
-            <b>VROS</b>
-            <small>Research memory</small>
+            <b>AROS</b>
+            <small>Agentic Research OS</small>
           </div>
         </button>
 

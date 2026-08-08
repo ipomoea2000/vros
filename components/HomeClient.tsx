@@ -11,6 +11,7 @@ import PortfolioImport from "./PortfolioImport";
 import AskVROS from "./AskVROS";
 import InboxPanel from "./InboxPanel";
 import AgentCenter from "./AgentCenter";
+import CommunicationsCenter from "./CommunicationsCenter";
 
 type Project = {
   id: string; name: string; area: string; status: string; progress: number;
@@ -32,7 +33,7 @@ type Grant = {
   projects?: { name: string } | null;
 };
 
-const validTabs: MainTab[] = ["dashboard","projects","manuscripts","grants","tasks","knowledge","agents"];
+const validTabs: MainTab[] = ["dashboard","projects","manuscripts","grants","tasks","knowledge","agents","communications"];
 
 export default function HomeClient({ user }: { user: User }) {
   const searchParams = useSearchParams();
@@ -273,6 +274,10 @@ export default function HomeClient({ user }: { user: User }) {
         <AgentCenter user={user} projects={projects} />
       )}
 
+      {!busy && tab==="communications" && (
+        <CommunicationsCenter user={user} projects={projects} />
+      )}
+
       {!busy && tab==="manuscripts" && (
         <>
           <form className="form-bar manuscripts-form" onSubmit={addManuscript}>
@@ -322,7 +327,7 @@ function greeting() {
   return `${h<12?"Good morning":h<18?"Good afternoon":"Good evening"}, Arthur`;
 }
 function labelFor(tab:MainTab) {
-  return ({projects:"Projects",tasks:"Tasks",knowledge:"Capture & Memory",manuscripts:"Manuscripts",grants:"Grants",agents:"AROS Agents",dashboard:"Home"})[tab];
+  return ({projects:"Projects",tasks:"Tasks",knowledge:"Capture & Memory",manuscripts:"Manuscripts",grants:"Grants",agents:"AROS Agents",communications:"Communications",dashboard:"Home"})[tab];
 }
 function relativeDate(value?:string|null) {
   if (!value) return "No activity recorded";

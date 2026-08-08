@@ -1,6 +1,6 @@
 {
   "name": "aros",
-  "version": "1.0.0",
+  "version": "1.5.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -12,12 +12,14 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "openai": "latest"
+    "openai": "latest",
+    "mailparser": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "@types/mailparser": "latest"
   }
 }
