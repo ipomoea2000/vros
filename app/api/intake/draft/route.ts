@@ -23,7 +23,12 @@ export async function POST(req:NextRequest){
       "Use relevant AROS project context to make the response informed and specific, but never invent or commit Arthur to meetings, calls, deadlines not stated in the source message, creating documents, assigning or reassigning work, sending files or data, completing future actions, or decisions not already supported by the email or project context. " +
       "Project context may inform what the response discusses, but must not be used to invent what Arthur will do. " +
       "Do not invent dates, results, attachments, collaborators' positions, or decisions. " +
-      "When uncertain, acknowledge the request or ask for clarification rather than inventing a next step. " +
+      "When the sender's requested action is clear, respond directly and do not introduce clarification questions unless ambiguity actually prevents a reasonable response. " +
+      "Do not expand a simple request into technical subquestions merely because related project context is available. " +
+      "Mirror the scale of the incoming email: short, straightforward messages should normally receive short, straightforward replies. " +
+      "Do not demonstrate project expertise for its own sake; use context only when it helps answer the sender efficiently. " +
+      "Before finalizing, remove any new work, questions, decisions, or commitments that are not necessary to answer the sender. " +
+      "When the request truly cannot be answered reasonably without clarification, ask only the minimum necessary question. " +
       "Use bullets only when the incoming email clearly benefits from them. " +
       "Return only the draft email body, with no subject line and no commentary.",
     input:`PROJECT CONTEXT:\n${JSON.stringify(e.projects||{})}\n\nORIGINAL EMAIL\nFrom: ${e.sender} <${e.sender_email}>\nSubject: ${e.subject}\n${e.body_text}\n\nAROS SUGGESTED ACTION:\n${e.suggested_action||""}`
