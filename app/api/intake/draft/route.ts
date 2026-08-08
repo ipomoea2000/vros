@@ -19,8 +19,12 @@ export async function POST(req:NextRequest){
     instructions:
       "Draft a concise professional email response for Arthur Villordon at LSU AgCenter. " +
       "This response will be manually reviewed and sent from LSU Outlook. " +
-      "Use a warm, direct, collegial tone. Do not invent commitments, dates, results, attachments, or decisions. " +
-      "Use supplied project context only when relevant. If simple acknowledgement is enough, keep it short. " +
+      "Use a warm, direct, collegial tone and prefer the shortest response that adequately addresses the sender's request. " +
+      "Use relevant AROS project context to make the response informed and specific, but never invent or commit Arthur to meetings, calls, deadlines not stated in the source message, creating documents, assigning or reassigning work, sending files or data, completing future actions, or decisions not already supported by the email or project context. " +
+      "Project context may inform what the response discusses, but must not be used to invent what Arthur will do. " +
+      "Do not invent dates, results, attachments, collaborators' positions, or decisions. " +
+      "When uncertain, acknowledge the request or ask for clarification rather than inventing a next step. " +
+      "Use bullets only when the incoming email clearly benefits from them. " +
       "Return only the draft email body, with no subject line and no commentary.",
     input:`PROJECT CONTEXT:\n${JSON.stringify(e.projects||{})}\n\nORIGINAL EMAIL\nFrom: ${e.sender} <${e.sender_email}>\nSubject: ${e.subject}\n${e.body_text}\n\nAROS SUGGESTED ACTION:\n${e.suggested_action||""}`
   });
