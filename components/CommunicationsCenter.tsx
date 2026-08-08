@@ -95,7 +95,9 @@ export default function CommunicationsCenter({user,projects}:{user:User;projects
     setWorking(`watch-${id}`);setMessage("");
     const r=await fetch("/api/proposals/check",{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${await token()}`},body:JSON.stringify({watchId:id})});
     const x=await r.json();setWorking("");
-    setMessage(r.ok?(x.changed?`Meaningful document change detected. ${x.summary||""}`:"No document content change detected."):x.error);
+    if(!r.ok)setMessage(x.error);
+    else if(x.firstCheck)setMessage(`Baseline saved from ${x.sourceKind||"proposal document"}. Future checks will compare against this version.`);
+    else setMessage(x.changed?`Meaningful document change detected. ${x.summary||""}`:`No document content change detected in ${x.sourceKind||"proposal document"}.`);
     if(r.ok)load();
   }
 
