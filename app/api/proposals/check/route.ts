@@ -50,6 +50,31 @@ async function readWordDocx(fileId:string,access:string){
   return result.value.replace(/\n{3,}/g,"\n\n").slice(0,120000);
 }
 
+
+function changeWindows(previous:string,current:string,contextChars=6000){
+  if(previous===current)return {previous:"",current:"",location:"none"};
+
+  let prefix=0;
+  const minLen=Math.min(previous.length,current.length);
+  while(prefix<minLen && previous[prefix]===current[prefix])prefix++;
+
+  let prevEnd=previous.length-1;
+  let currEnd=current.length-1;
+  while(prevEnd>=prefix && currEnd>=prefix && previous[prevEnd]===current[currEnd]){
+    prevEnd--; currEnd--;
+  }
+
+  const start=Math.max(0,prefix-contextChars);
+  const prevStop=Math.min(previous.length,prevEnd+1+contextChars);
+  const currStop=Math.min(current.length,currEnd+1+contextChars);
+
+  return {
+    previous: previous.slice(start,prevStop),
+    current: current.slice(start,currStop),
+    location:`approx chars ${prefix}-${Math.max(prevEnd,currEnd)+1}`
+  };
+}
+
 async function extractText(fileId:string,mimeType:string,access:string){
   if(mimeType==="application/vnd.google-apps.document"){
     return {text:await readNativeGoogleDoc(fileId,access),sourceKind:"Native Google Doc"};
@@ -101,10 +126,15 @@ export async function POST(req:NextRequest){
       store:false,
       instructions:
         "Compare two versions of a collaborative grant proposal. Return JSON only with summary, significance, requires_attention. " +
-        "summary should identify meaningful substantive changes, not formatting noise. " +
-        "significance should explain why the change matters to the proposal or linked project. " +
-        "requires_attention must be boolean. Do not invent changes or infer edits that are not supported by the text.",
-      input:`PREVIOUS VERSION:\n${String(w.last_snapshot||"").slice(0,50000)}\n\nCURRENT VERSION:\n${text.slice(0,50000)}`
+        "summary should identify the actual changed text shown in the local before/after windows, not summarize the whole proposal. " +
+        "If the change is trivial, formatting-only, or nonsubstantive, say that briefly and set requires_attention false. " +
+        "Do not infer truncation, missing sections, incomplete documents, or other problems unless the before/after windows directly demonstrate that the change caused them. " +
+        "significance should explain why the detected change matters to the proposal or linked project. " +
+        "requires_attention must be boolean. Do not invent changes or infer edits not supported by the shown change windows.",
+      input:(()=>{
+        const window=changeWindows(String(w.last_snapshot||""),text);
+        return `CHANGE LOCATION: ${window.location}\n\nPREVIOUS VERSION AROUND CHANGE:\n${window.previous}\n\nCURRENT VERSION AROUND CHANGE:\n${window.current}`;
+      })()
     });
     try{
       const t=response.output_text.replace(/^```json\s*/i,"").replace(/```$/,"").trim();
