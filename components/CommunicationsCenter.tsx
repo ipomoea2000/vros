@@ -13,6 +13,7 @@ export default function CommunicationsCenter({user,projects}:{user:User;projects
   const [tab,setTab]=useState<"email"|"proposals"|"commitments">("email");
   const [message,setMessage]=useState("");
   const [working,setWorking]=useState("");
+  const [activeDraft,setActiveDraft]=useState<any|null>(null);
   const [watchForm,setWatchForm]=useState({title:"",source_url:"",project_id:""});
 
   async function token(){return (await supabase.auth.getSession()).data.session?.access_token||""}
@@ -30,6 +31,16 @@ export default function CommunicationsCenter({user,projects}:{user:User;projects
     setEmails(e.data||[]);setWatches(w.data||[]);setChanges(c.data||[]);setCommitments(k.data||[]);
   }
   useEffect(()=>{load()},[]);
+  useEffect(()=>{
+    setActiveDraft(null);
+  },[tab]);
+  useEffect(()=>{
+    function onKeyDown(e:KeyboardEvent){
+      if(e.key==="Escape") setActiveDraft(null);
+    }
+    window.addEventListener("keydown",onKeyDown);
+    return ()=>window.removeEventListener("keydown",onKeyDown);
+  },[]);
 
   async function connectGoogle(){
     setWorking("connect-google");setMessage("");
@@ -142,11 +153,6 @@ export default function CommunicationsCenter({user,projects}:{user:User;projects
         <div className="service-status"><span className={google.connected?"connected-dot":"status-dot"}/><div>
           <b>Gmail intake + Google Docs</b>
           <small>{google.connected?google.google_email:(!google.configured?"Vercel Google OAuth setup required":"Not connected")}</small>
-          {!google.configured && google.diagnostics && <small className="diag-text">
-            Missing: {google.diagnostics.missing?.length ? google.diagnostics.missing.join(", ") : "none"} ·
-            Client ID format: {google.diagnostics.client_id_format_ok ? "OK" : "not OK"} ·
-            App URL: {google.diagnostics.app_url}
-          </small>}
         </div></div>
         {google.connected
           ? <button className="quiet-button" onClick={disconnectGoogle} disabled={Boolean(working)}>Disconnect</button>
@@ -176,7 +182,7 @@ export default function CommunicationsCenter({user,projects}:{user:User;projects
 
       <div className="email-list">
         {priorityEmails.map(e=><EmailCard key={e.id} email={e} projects={projects} working={working}
-          onDraft={()=>draft(e.id)} onCopy={()=>copyDraft(e.draft_response||"")}
+          onDraft={()=>draft(e.id)} onCopy={()=>copyDraft(e.draft_response||"")} onOpenDraft={()=>setActiveDraft(e)}
           onProject={(v:string)=>setProject(e.id,v)} onTask={()=>createTask(e)}
           onCommitMine={()=>saveCommitment(e,"Mine")} onCommitTheirs={()=>saveCommitment(e,"Theirs")}/>)}
         {!priorityEmails.length&&<section className="panel muted">
@@ -186,7 +192,7 @@ export default function CommunicationsCenter({user,projects}:{user:User;projects
 
       <details className="panel low-mail"><summary>Other triaged mail ({otherEmails.length})</summary>
         <div className="email-list">{otherEmails.map(e=><EmailCard key={e.id} email={e} projects={projects} working={working}
-          onDraft={()=>draft(e.id)} onCopy={()=>copyDraft(e.draft_response||"")}
+          onDraft={()=>draft(e.id)} onCopy={()=>copyDraft(e.draft_response||"")} onOpenDraft={()=>setActiveDraft(e)}
           onProject={(v:string)=>setProject(e.id,v)} onTask={()=>createTask(e)}
           onCommitMine={()=>saveCommitment(e,"Mine")} onCommitTheirs={()=>saveCommitment(e,"Theirs")}/>)}</div>
       </details>
@@ -229,10 +235,28 @@ export default function CommunicationsCenter({user,projects}:{user:User;projects
       <div className="panel"><div className="head"><h2>Waiting on others</h2><span className="badge">{commitments.filter(c=>c.direction==="Theirs"&&c.status==="Open").length}</span></div>
         {commitments.filter(c=>c.direction==="Theirs"&&c.status==="Open").map(c=><Commitment key={c.id} c={c}/>)}</div>
     </section>}
+
+    {activeDraft&&<div className="draft-modal-backdrop" onClick={()=>setActiveDraft(null)}>
+      <div className="draft-modal" onClick={e=>e.stopPropagation()}>
+        <div className="draft-modal-head">
+          <div>
+            <p className="eyebrow">AROS draft</p>
+            <h3>{activeDraft.subject||"Email response"}</h3>
+          </div>
+          <button className="draft-close" onClick={()=>setActiveDraft(null)} aria-label="Close draft">×</button>
+        </div>
+        <p className="muted">Review for commitments, dates, and factual accuracy before sending from LSU Outlook.</p>
+        <textarea rows={12} value={activeDraft.draft_response||""} readOnly/>
+        <div className="draft-modal-actions">
+          <button onClick={()=>copyDraft(activeDraft.draft_response||"")}>Copy response</button>
+          <button className="quiet-button" onClick={()=>setActiveDraft(null)}>Close</button>
+        </div>
+      </div>
+    </div>}
   </div>
 }
 
-function EmailCard({email,projects,working,onDraft,onCopy,onProject,onTask,onCommitMine,onCommitTheirs}:any){
+function EmailCard({email,projects,working,onDraft,onCopy,onOpenDraft,onProject,onTask,onCommitMine,onCommitTheirs}:any){
  return <article className={`panel email-card priority-${String(email.priority).toLowerCase()}`}>
    <div className="email-meta">
      <span className="badge">{email.priority}</span><span>{email.triage_category}</span>
@@ -253,10 +277,9 @@ function EmailCard({email,projects,working,onDraft,onCopy,onProject,onTask,onCom
      <button className="quiet-button" onClick={onCommitMine}>I owe this</button>
      <button className="quiet-button" onClick={onCommitTheirs}>Waiting on them</button>
    </div>
-   {email.draft_response&&<div className="draft-box">
-     <b>Draft for LSU Outlook — review before sending</b>
-     <textarea readOnly rows={7} value={email.draft_response}/>
-     <button onClick={onCopy}>Copy response</button>
+   {email.draft_response&&<div className="draft-ready">
+     <span><b>Draft ready</b><small> Saved in AROS</small></span>
+     <button className="quiet-button" onClick={onOpenDraft}>Open draft</button>
    </div>}
  </article>
 }
