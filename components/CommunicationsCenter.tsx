@@ -142,6 +142,11 @@ export default function CommunicationsCenter({user,projects}:{user:User;projects
         <div className="service-status"><span className={google.connected?"connected-dot":"status-dot"}/><div>
           <b>Gmail intake + Google Docs</b>
           <small>{google.connected?google.google_email:(!google.configured?"Vercel Google OAuth setup required":"Not connected")}</small>
+          {!google.configured && google.diagnostics && <small className="diag-text">
+            Missing: {google.diagnostics.missing?.length ? google.diagnostics.missing.join(", ") : "none"} ·
+            Client ID format: {google.diagnostics.client_id_format_ok ? "OK" : "not OK"} ·
+            App URL: {google.diagnostics.app_url}
+          </small>}
         </div></div>
         {google.connected
           ? <button className="quiet-button" onClick={disconnectGoogle} disabled={Boolean(working)}>Disconnect</button>
