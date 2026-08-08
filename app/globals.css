@@ -91,3 +91,13 @@ body{background:#f4f1ed}
 
 .connection-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.service-card{display:flex;align-items:center;justify-content:space-between;gap:15px}.service-status{display:flex;align-items:center;gap:10px}.service-status>div{display:grid;gap:2px}.service-status small{color:var(--m)}
 @media(max-width:800px){.connection-grid,.service-card{grid-template-columns:1fr;display:grid}}
+
+/* AROS 1.5.2: email draft review */
+.draft-ready{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;padding:10px 12px;background:#f7f3fb;border:1px solid var(--l);border-radius:10px}
+.draft-ready span{display:flex;gap:6px;align-items:baseline}.draft-ready small{color:var(--m)}
+.draft-modal-backdrop{position:fixed;inset:0;background:rgba(20,16,22,.45);display:grid;place-items:center;z-index:2000;padding:20px}
+.draft-modal{width:min(760px,96vw);max-height:90vh;overflow:auto;background:#fff;border-radius:16px;padding:20px;box-shadow:0 24px 60px rgba(0,0,0,.22)}
+.draft-modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}.draft-modal-head h3{margin:4px 0}
+.draft-close{background:transparent!important;color:var(--i)!important;font-size:30px;line-height:1;padding:0 5px;min-width:auto}
+.draft-modal textarea{width:100%;box-sizing:border-box;font:inherit;line-height:1.5;border:1px solid var(--l);border-radius:10px;padding:12px;background:#fbfaf8}
+.draft-modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
